@@ -1,8 +1,6 @@
 
-import dotenv from 'dotenv'
 import { useState, useEffect } from 'react';
 
-dotenv.config();
 
 const DebtorForm = () => {
   const [documentUrl, setDocumentUrl] = useState('');
@@ -34,9 +32,8 @@ const DebtorForm = () => {
       return;
     }
 
-  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME; 
-  const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET; 
-    
+ const cloudName = 'dpttzjwpr'; 
+    const uploadPreset = 'PDFDATA'; 
     const metadata = {
       fullName: String(formData.fullName).trim(),
       companyName: String(formData.companyName).trim(),
