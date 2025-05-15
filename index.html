@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload to Cloudinary</title>
+</head>
+<body>
+  <input type="file" id="fileInput" />
+  <button id="uploadButton">Upload</button>
+
+  <script>
+    document.getElementById('uploadButton').addEventListener('click', async () => {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select a file.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'PDFDATA'); // Replace with your preset name
+
+      try {
+        const response = await fetch('https://api.cloudinary.com/v1_1/dpttzjwpr/auto/upload', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        console.log('Upload successful:', data);
+        // You can now use data.secure_url to display or process the uploaded file
+      } catch (error) {
+        console.error('Upload failed:', error);
+      }
+    });
+  </script>
+</body>
+</html>
